@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block lbody%}
+    <div class="breadcrumb">
+        <a href="#">全部分类</a>
+        <span>></span>
+        <a href="#">{{ title }}</a>
+        <a href="">{%if id|default:'' != ''%}
+        > 商品详情
+        {%endif%}
+        </a>
+    </div>
+
+{%block detail%}{%endblock detail%}
+
+    <div class="main_wrap clearfix">
+        <div class="l_wrap fl clearfix">
+            <div class="new_goods">
+                <h3>新品推荐</h3>
+                <ul>
+                    {%for new in news%}
+                    <li>
+                        <a href="/{{new.id}}/"><img src="/static/{{new.gpic}}" alt=""></a>
+                        <h4><a href="/{{new.id}}/">{{new.gtitle}}</a></h4>
+                        <div class="prize">￥{{new.gprice}}</div>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </div>
+        {%block detail2%}{%endblock detail2%}
+
+{%endblock lbody%}

@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+
+    {%block lbody%}
+
+        <div class="right_content clearfix">
+           <h3 class="common_title2">全部订单</h3>
+
+            {% for g in page %}
+            <ul class="order_list_th w978 clearfix">
+                <li class="col01">{{g.odate}}</li>
+                <li class="col02">订单号：{{g.oid}}</li>
+                <li class="col02 stress">未支付</li>
+            </ul>
+
+            <table class="order_list_table w980">
+                <tbody>
+                    <tr>
+                        <td width="55%">
+                            {% for goods in g.order_goods %}
+                            <ul class="order_goods_list clearfix">
+                                <li class="col01"><img src="/static/{{goods.goods.gpic}}" alt=""></li>
+                                <li class="col02">{{goods.goods.gtitle}}<em>{{goods.price}}元/{{goods.goods.gunit}}</em></li>
+                                <li class="col03">{{goods.count}}</li>
+                                <li class="col04">{{goods.amount}}元</li>
+                            </ul>
+                            {% endfor %}
+                        </td>
+                        <td width="15%">{{g.ototal}}元</td>
+                        <td width="15%">待付款</td>
+                        <td width="15%"><a href="#" class="oper_btn">去付款</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            {% endfor %}
+
+
+
+
+            <div class="pagenation">
+                {%if page.has_previous%}
+                <a href="/user/user_center_order{{page.previous_page_number}}/">上一页</a>
+                {%endif%}
+                {%for pindex in paginator.page_range%}
+
+                {%if pindex == page.number%}
+                <a href="#" class="active">{{pindex}}</a>
+                {%else%}
+                <a href="/user/user_center_order{{pindex}}">{{pindex}}</a>
+                {%endif%}
+
+                {%endfor%}
+
+                {%if page.has_next%}
+                <a href="/user/user_center_order{{page.next_page_number}}/">下一页</a>
+                {%endif%}
+
+            </div>
+        </div>
+    </div>
+    {%endblock lbody%}

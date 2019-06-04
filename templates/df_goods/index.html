@@ -1,0 +1,166 @@
+{%extends 'base.html'%}
+{%block head%}
+    <script type="text/javascript" src="/static/js/slide.js"></script>
+        {% if request.session.user_name|default:'' != '' %}
+        <script>
+            $(function () {
+               f();
+            });
+            function f() {  //进入页面时刷新购物车数量  规定此时商品id和数量都为0
+                 $.get('/cart/add0_0/', function (data) {
+
+                    $('#show_count').text(data.count);
+                });
+            }
+        </script>
+        {% endif %}
+{%endblock head%}
+{%block lbody%}
+    <div class="center_con">
+        <ul class="main_menu fl">
+            <li><a href="/list2_1_1/" class="fruit">新鲜水果</a></li>
+            <li><a href="" class="seafood">海鲜水产</a></li>
+            <li><a href="" class="meat">猪牛羊肉</a></li>
+            <li><a href="" class="egg">禽类蛋品</a></li>
+            <li><a href="" class="vegetable">新鲜蔬菜</a></li>
+            <li><a href="" class="ice">速食食品</a></li>
+        </ul>
+
+        <div class="slide_con fl">
+            <ul class="slide" id="slide">
+                <li><a href=""><img src="/static/images/slide.jpg" alt="幻灯片" /></a></li>
+                <li><a href=""><img src="/static/images/slide02.jpg" alt="幻灯片" /></a></li>
+                <li><a href=""><img src="/static/images/slide03.jpg" alt="幻灯片" /></a></li>
+                <li><a href=""><img src="/static/images/slide04.jpg" alt="幻灯片" /></a></li>
+            </ul>
+            <div class="prev"></div>
+            <div class="next"></div>
+            <ul class="points">
+
+            </ul>
+        </div>
+
+        <div class="adv fl">
+            <a href=""><img src="/static/images/adv01.jpg" alt="广告" /></a>
+            <a href=""><img src="/static/images/adv02.jpg" alt="广告" /></a>
+        </div>
+    </div>
+
+    <div class="common_model">
+        <div class="common_tittle">
+            <h3 class="fl">新鲜水果</h3>
+
+            <ul class="fl">
+                <li><span>|</span></li>
+                {% for g in type01 %}
+                <li><a href="/{{g.id}}/">{{g.gtitle|slice:'10'}}</a></li>
+                {% endfor %}
+            </ul>
+
+            <a href="/list2_1_1" class="more fr">查看更多 &gt;</a>
+
+        </div>
+
+        <div class="common_goods_list">
+            <div class="goods_banner fl"><img src="/static/images/banner01.jpg" alt="香蕉" /></div>
+            <ul class="goods_list fl">
+                {% for g in type0 %}
+                <li>
+                    <h4>{{g.gtitle|slice:'10'}}</h4>
+                    <a href="/{{g.id}}/"><img src="/static/{{g.gpic}}" alt="商品图片" /></a>
+                    <p>￥ {{g.gprice}}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="common_model">
+        <div class="common_tittle">
+            <h3 class="fl">猪牛羊肉</h3>
+
+            <ul class="fl">
+                <li><span>|</span></li>
+                <li><a href="">鲜芒</a></li>
+                <li><a href="">加州提子</a></li>
+                <li><a href="">亚马逊牛油果</a></li>
+            </ul>
+
+            <a href="#" class="more fr">查看更多 &gt;</a>
+
+        </div>
+
+        <div class="common_goods_list">
+            <div class="goods_banner fl"><img src="/static/images/banner03.jpg" alt="香蕉" /></div>
+            <ul class="goods_list fl">
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods002.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods002.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods002.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods002.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="common_model">
+        <div class="common_tittle">
+            <h3 class="fl">禽类蛋品</h3>
+
+            <ul class="fl">
+                <li><span>|</span></li>
+                <li><a href="">鲜芒</a></li>
+                <li><a href="">加州提子</a></li>
+                <li><a href="">亚马逊牛油果</a></li>
+            </ul>
+
+            <a href="#" class="more fr">查看更多 &gt;</a>
+
+        </div>
+
+        <div class="common_goods_list">
+            <div class="goods_banner fl"><img src="/static/images/banner04.jpg" alt="香蕉" /></div>
+            <ul class="goods_list fl">
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods003.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods003.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods003.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+                <li>
+                    <h4>草莓</h4>
+                    <a href="#"><img src="/static/images/goods003.jpg" alt="商品图片" /></a>
+                    <p>￥ 38.00</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{%endblock lbody%}
